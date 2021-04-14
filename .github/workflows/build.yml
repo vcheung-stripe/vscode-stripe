@@ -21,7 +21,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: npm install, and test
+      - name: npm install, and test (ubuntu)
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           npm install
           xvfb-run -a npm run test --if-present
+
+      - name: npm install, and test (macos, windows)
+        if: ${{ !(matrix.os == 'ubuntu-latest') }}
+        run: |
+          npm install
+          npm run test --if-present
