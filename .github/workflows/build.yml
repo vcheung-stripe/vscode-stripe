@@ -21,8 +21,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: npm install, compile, and test
+      - name: npm install, and test
         run: |
           npm install
-          xvfb-run -a npm run compile --if-present
           xvfb-run -a npm run test --if-present
